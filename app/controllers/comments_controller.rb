@@ -5,17 +5,14 @@ class CommentsController < ApplicationController
 
   def create
     movie = Movie.find(params[:movie_id])
-
     @comment = @movie.comments.build(comment_params)
     @comment.author_id = current_user.id
-
     @comment.save
     flash[:success] = "You have commented on #{movie.name}. Thank you."
     redirect_to movie
   end
 
   def destroy
-
   end
 
   private
