@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   root "home#welcome"
+  # resources :users do
+  #   resources :comments, only: %i[create destroy]
+  # end
   resources :genres, only: :index do
     member do
       get "movies"
@@ -14,5 +17,6 @@ Rails.application.routes.draw do
     collection do
       get :export
     end
+    resources :comments, only: %i[create destroy]
   end
 end
