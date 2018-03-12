@@ -14,4 +14,5 @@
 
 class Movie < ApplicationRecord
   belongs_to :genre
+  validates :title, title_brackets: true
 end
