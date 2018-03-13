@@ -16,6 +16,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    flash[:notice] = "You are here!"
+    redirect_to @movie
   end
 
   private
