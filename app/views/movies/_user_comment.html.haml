@@ -1,4 +1,5 @@
-- user_comment = Comment.user_comment_on_movie(@movie.id, current_user.id).first
+
+- user_comment = Comment.find_by(movie_id: @movie.id, author_id: current_user.id)
 = "You have already commented on this movie:"
 %br
 = user_comment.message
