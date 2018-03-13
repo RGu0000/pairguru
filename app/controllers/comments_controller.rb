@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  #before_action :check_if_already_commented!
   before_action :set_movie, only: %i[create destroy]
 
   def create
@@ -10,16 +9,14 @@ class CommentsController < ApplicationController
     if @comment.save
       flash[:notice] = "You have commented on #{@movie.title}. Thank you."
     else
-      flash[:danger] = "Failed to add new comment. Delete previous one first!"
+      flash[:danger] = 'Failed to add new comment. Delete previous one first!'
     end
     redirect_to @movie
   end
 
   def destroy
     @movie.comments.find(params[:id]).destroy
-    #@movie
-    #Comment.find(params[:movie_id]).find(params[:author_id]).destroy
-    flash[:notice] = "Comment successfully deleted!"
+    flash[:notice] = 'Comment successfully deleted!'
     redirect_to @movie
   end
 
