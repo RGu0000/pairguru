@@ -1,0 +1,6 @@
+= form_for [@movie, @movie.comments.build] do |f|
+  %p
+    Message:
+    = f.text_area :message
+  %p
+    = f.submit
