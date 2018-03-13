@@ -4,4 +4,9 @@
 - if user_signed_in?
   %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
 
-= render 'movies/comments', locals: { comment: @comment }
+- if Comment.user_comment_on_movie(@movie.id, current_user.id).present?
+  = render 'movies/user_comment'
+- else
+  = render 'comments/form'
+
+= render 'movies/comments'
