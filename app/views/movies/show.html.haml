@@ -4,9 +4,11 @@
 - if user_signed_in?
   %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
 
-- if Comment.user_comment_on_movie(@movie.id, current_user.id).present?
-  = render 'movies/user_comment'
+  - if Comment.user_comment_on_movie(@movie.id, current_user.id).present?
+    = render 'movies/user_comment'
+  - else
+    = render 'comments/form'
 - else
-  = render 'comments/form'
-
+  %h3 Login to add comments
+  %br
 = render 'movies/comments'

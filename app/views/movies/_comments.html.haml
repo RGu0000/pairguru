@@ -1,7 +1,9 @@
-%h2 Comments
-
+%h3 Comments
 - if @comments
-  - @comments.each_with_index do |comment, index|
-    %h3
-      %small= "Added by #{index}"
-    = comment.message
+  - @comments.each do |comment|
+    .comment
+      .page-header
+        %h2
+          %small= "Added by #{comment.user.name}"
+        Message:
+        = comment.message
