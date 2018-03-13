@@ -5,8 +5,8 @@
   %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
 
 - if Comment.user_comment_on_movie(@movie.id, current_user.id).present?
-  = render 'movies/user_comment', locals: { comment: @comment }
+  = render 'movies/user_comment'
 - else
-  = render 'comments/form', locals: { comment: :comment }
+  = render 'comments/form'
 
-= render 'movies/comments', locals: { comment: @comment }
+= render 'movies/comments'

@@ -4,11 +4,11 @@ class CommentsController < ApplicationController
   before_action :set_movie, only: %i[create destroy]
 
   def create
-    @comment = @movie.comments.build(comment_params)
+    @comment = @movie.comments.create(comment_params)
     @comment.author_id = current_user.id
     @comment.movie_id = @movie.id
     if @comment.save
-      flash[:notice] = "You have commented #{@movie.title}. Thank you."
+      flash[:notice] = "You have commented on #{@movie.title}. Thank you."
     else
       flash[:danger] = "Failed to add new comment. Delete previous one first!"
     end
@@ -16,7 +16,10 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    flash[:notice] = "You are here!"
+    @movie.comments.find(params[:id]).destroy
+    #@movie
+    #Comment.find(params[:movie_id]).find(params[:author_id]).destroy
+    flash[:notice] = "Comment successfully deleted!"
     redirect_to @movie
   end
 
@@ -27,7 +30,7 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:title, :message)
+    params.require(:comment).permit(:message)
   end
 
   def check_if_already_rated!
