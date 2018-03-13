@@ -1,6 +1,7 @@
-= form_for [@movie, @movie.comments.build] do |f|
-  %p
+= form_for [@movie, @comment] do |f|
+  -
+  .field.form-group
     Message:
-    = f.text_area :message
+    = f.text_area :message, class: "form-control"
   .actions
     = f.submit
