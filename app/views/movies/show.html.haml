@@ -1,10 +1,12 @@
+
 %h1= @movie.title
 .jumbotron
   = @movie.description
 - if user_signed_in?
+  - user_comment = Comment.find_by(movie_id: @movie.id, author_id: current_user.id)
   %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
 
-  - if Comment.user_comment_on_movie(@movie.id, current_user.id).present?
+  - if user_comment.present?
     = render 'movies/user_comment'
   - else
     = render 'comments/form'

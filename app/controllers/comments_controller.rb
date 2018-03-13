@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   before_action :set_movie, only: %i[create destroy]
 
   def create
-    @comment = @movie.comments.create(comment_params)
+    @comment = @movie.comments.new(comment_params)
     initialize_comment
     if @comment.save
       flash[:notice] = "You have commented on #{@movie.title}. Thank you."
