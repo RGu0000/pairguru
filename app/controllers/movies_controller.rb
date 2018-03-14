@@ -9,7 +9,7 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
     @comments = @movie.comments
     @comment = Comment.new
-    @user_comment = Comment.find_by(movie_id: @movie.id, author_id: current_user.id)
+    @user_comment = Comment.find_by(movie_id: @movie.id, author_id: current_user.id) if current_user.present?
   end
 
   def send_info
