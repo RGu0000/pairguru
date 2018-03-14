@@ -4,6 +4,10 @@
     .comment
       .page-header
         %h2
-          %small= "Added by #{comment.user.name}"
+          %small= "Added by #{comment.user.name} on #{comment.created_at.strftime("%d/%m/%Y %H:%M")}"
         Message:
-        = comment.message
+        - unless current_user.id == comment.author_id
+          = comment.message
+        - else
+          %p{style: "color:red"}= comment.message
+          =link_to "Delete your comment", movie_comment_path(@user_comment.movie_id, @user_comment.id), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' }
