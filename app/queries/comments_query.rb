@@ -12,5 +12,6 @@ class CommentsQuery
       .having('count_all > ?', 0)
       .limit(10)
       .count
+      .to_a
   end
 end
