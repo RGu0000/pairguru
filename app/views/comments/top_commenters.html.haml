@@ -1,7 +1,13 @@
 All hail top commenters from last 7 days!
-%br
--@top_commenters.each_with_index do |user, index|
-  = index + 1
-  = user.first
-  = user.second
-  %br
+
+%table{border: 1}
+  %tbody
+    %tr
+      %th #
+      %th User name
+      %th Comments
+    - @top_commenters.each_with_index do |user, index|
+      %tr
+        %td= index + 1
+        %td= user.first
+        %td= user.second
