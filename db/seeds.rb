@@ -85,7 +85,7 @@ if Movie.count < 100
 Rails.logger.info "Creating comments..."
 
 if Comment.count < 200
-  10.times do |outer_index|
+  20.times do |outer_index|
     (20-outer_index).times do |inner_index|
       Comment.create!(
         author_id: inner_index+1,
