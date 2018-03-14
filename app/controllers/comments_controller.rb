@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :top_commenters
   before_action :set_movie, only: %i[create destroy]
 
   def create
