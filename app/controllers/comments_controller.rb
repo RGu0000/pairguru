@@ -19,6 +19,10 @@ class CommentsController < ApplicationController
     redirect_to @movie
   end
 
+  def top_commenters
+  
+  end
+
   private
 
   def set_movie
