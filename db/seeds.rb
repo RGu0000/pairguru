@@ -81,4 +81,21 @@ if Movie.count < 100
       released_at: Date.new(movie[:release_year].to_i)
     )
   end
+
+Rails.logger.info "Creating comments..."
+
+if Comment.count < 200
+  10.times do |outer_index|
+    (20-outer_index).times do |inner_index|
+      Comment.create!(
+        author_id: inner_index+1,
+        movie_id: outer_index+1,
+        message: Faker::Lorem.paragraph(1),
+        created_at: rand(1.month).seconds.ago
+      )
+    end
+  end
+end
+
+
 end
