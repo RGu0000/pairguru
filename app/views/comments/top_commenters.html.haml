@@ -1,2 +1,7 @@
-Test
-= @test
+All hail top commenters from last 7 days!
+%br
+-@top_commenters.each_with_index do |user, index|
+  = index + 1
+  = user.first
+  = user.second
+  %br

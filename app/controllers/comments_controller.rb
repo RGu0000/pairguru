@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
   end
 
   def top_commenters
-  
+    @top_commenters = CommentsQuery.new.find_top_10_commenters
   end
 
   private
