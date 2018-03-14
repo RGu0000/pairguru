@@ -1,1 +1,13 @@
-Test
+All hail top commenters from last 7 days!
+
+%table.top-commenters{border: 1}
+  %tbody
+    %tr
+      %th #
+      %th User name
+      %th Comments
+    - @top_commenters.each_with_index do |user, index|
+      %tr
+        %td= index + 1
+        %td= user[0]
+        %td= user[1]
