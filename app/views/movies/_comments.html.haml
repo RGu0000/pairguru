@@ -1,5 +1,5 @@
-%h3 Comments
 - if @comments.any?
+  %h3 Comments
   - @comments.each do |comment|
     .comment
       .page-header
@@ -10,3 +10,5 @@
         =link_to "Delete your comment", movie_comment_path(@user_comment.movie_id, @user_comment.id), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' }
       - else
         = comment.message
+-else
+  %h3 No comments has been added yet. You still can be first!
