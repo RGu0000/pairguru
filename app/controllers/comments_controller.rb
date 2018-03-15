@@ -7,6 +7,8 @@ class CommentsController < ApplicationController
     initialize_comment
     if @comment.save
       flash[:notice] = "You have commented on #{@movie.title}. Thank you."
+    elsif @comment.message.empty?
+      flash[:danger] = 'Failed to add new comment. It can\'t be empty!'
     else
       flash[:danger] = 'Failed to add new comment. Delete previous one first!'
     end
