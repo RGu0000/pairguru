@@ -74,6 +74,13 @@ describe TitleBracketsValidator do
     let(:title) { "Lord of The Rings" }
     it_behaves_like "has valid title"
   end
+
+  context "with all the brackets nested with no chars inside" do
+    let(:title) { "Lord of The Rings({<[]>})" }
+    it_behaves_like "has invalid title"
+  end
+
+
 end
 
 class Validatable
