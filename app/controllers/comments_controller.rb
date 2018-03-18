@@ -16,8 +16,12 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @movie.comments.find(params[:id]).destroy
-    flash[:notice] = 'Comment successfully deleted!'
+    comment = @movie.comments.find(params[:id])
+    if comment.delete
+      flash[:notice] = 'Comment successfully deleted!'
+    else
+      flash[:danger] = 'Failed to delete a comment. Try again.'
+    end
     redirect_to @movie
   end
 
