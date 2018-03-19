@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
 
   def destroy
     comment = @movie.comments.find(params[:id])
-    if comment.delete
+    if comment.author_id == current_user.id && comment.destroy
       flash[:notice] = 'Comment successfully deleted!'
     else
       flash[:danger] = 'Failed to delete a comment. Try again.'
