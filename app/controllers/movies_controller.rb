@@ -10,6 +10,8 @@ class MoviesController < ApplicationController
     @comments = @movie.comments.includes(:user).order('comments.created_at ASC')
     @comment = Comment.new
     @user_comment = Comment.find_by(movie_id: @movie.id, author_id: current_user.id) if current_user.present?
+    @user_like = Like.find_by(movie_id: @movie.id, user_id: current_user.id) if current_user.present?
+    # fadf
   end
 
   def send_info
