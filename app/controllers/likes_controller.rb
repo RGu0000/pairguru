@@ -30,11 +30,6 @@ class LikesController < ApplicationController
     @movie = Movie.find(params[:movie_id])
   end
 
-  # def check_if_already_liked!
-  #   @movie = Movie.find(params[:movie_id])
-  #   redirect_to movie unless @movie.likes.where(user_id: current_user.id).empty?
-  # end
-
   def like_params
     params.permit(:user_id, :movie_id)
   end

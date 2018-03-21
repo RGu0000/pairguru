@@ -11,7 +11,8 @@ class MoviesController < ApplicationController
     @comment = Comment.new
     @user_comment = Comment.find_by(movie_id: @movie.id, author_id: current_user.id) if current_user.present?
     @user_like = Like.find_by(movie_id: @movie.id, user_id: current_user.id) if current_user.present?
-    # fadf
+    @user_rating = Rating.find_by(movie_id: @movie.id, user_id: current_user.id) if current_user.present?
+    @average_rating = RatingsQuery.new(@movie.id).average_rating
   end
 
   def send_info
