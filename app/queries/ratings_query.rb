@@ -4,6 +4,6 @@ class RatingsQuery
   end
 
   def average_rating
-    @relation.average(:rating)
+    @relation.average(:score)
   end
 end

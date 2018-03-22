@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     resources :likes, only: %i[create destroy]
   end
 
-  post 'movie_id/:movie_id/user_id/:user_id/rating/:rating', to: 'ratings#rate', as: 'rate_movie'
+  post 'movie_id/:movie_id/user_id/:user_id/score/:score', to: 'ratings#rate', as: 'rate_movie'
 
   get 'top_commenters', to: 'comments#top_commenters'
 end
