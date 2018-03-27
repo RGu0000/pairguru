@@ -6,4 +6,8 @@ class MovieDecorator < Draper::Decorator
       %w(abstract nightlife transport).sample +
       "?a=" + SecureRandom.uuid
   end
+
+  def formatted_released_at
+    released_at.strftime("%d.%m.%Y")
+  end
 end

@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :authenticate_user!, only: [:send_info]
+  before_action :authenticate_user!, only: [:send_info, :update]
 
   def index
     @movies = Movie.all.decorate
@@ -15,6 +15,21 @@ class MoviesController < ApplicationController
     @average_rating = RatingsQuery.new(@movie.id).average_rating
   end
 
+  def update
+    @movie = Movie.find(params[:id])
+    get_params
+    @movie.title = get_params[:title]
+    @movie.description = get_params[:description]
+    @movie.genre_id = get_params[:genre_id]
+    # binding.pry
+    if @movie.save
+      flash[:notice] = "You have updated on #{@movie.title}."
+    else
+      flash[:danger] = "Operation failed. Try again"
+    end
+    redirect_to @movie
+  end
+
   def send_info
     @movie = Movie.find(params[:id])
     MovieInfoMailer.send_info(current_user, @movie).deliver_now
@@ -25,5 +40,15 @@ class MoviesController < ApplicationController
     file_path = 'tmp/movies.csv'
     MovieExporter.new.call(current_user, file_path)
     redirect_to root_path, notice: 'Movies exported'
+  end
+
+  private
+
+  def get_params
+    params.require(:movie).permit(:title, :description, :genre_id)
+  end
+
+  def update_movie_att
+
   end
 end
