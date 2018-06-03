@@ -1,0 +1,4 @@
+- if @user_like.blank?
+  %p= link_to 'Like this movie!', movie_likes_path(@movie), class: 'btn btn-sm btn-standard', method: :post
+- else
+  %p= link_to 'Unlike this movie!', movie_like_path(@user_like.movie_id, @user_like.id), class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: 'Are you sure?' }

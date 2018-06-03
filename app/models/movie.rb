@@ -17,4 +17,6 @@ class Movie < ApplicationRecord
   validates_with TitleBracketsValidator
   belongs_to :genre
   has_many :comments, dependent: :destroy
+  has_many :likes
+  has_many :users, through: :likes
 end
