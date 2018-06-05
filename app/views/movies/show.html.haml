@@ -1,6 +1,8 @@
 %h1= @movie.title
+%img(src="https://pairguru-api.herokuapp.com/#{@movie.poster}")
+%h3= "Average rating of the movie: #{@movie.rating}"
 .jumbotron
-  = @movie.description
+  = @movie.plot
 - if user_signed_in?
 
   %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'

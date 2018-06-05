@@ -1,7 +1,6 @@
 module MovieDatabase
   class PairguruApi
     URL = 'https://pairguru-api.herokuapp.com/api/v1/movies/'.freeze
-    # attributes = %i[poster rating plot]
 
     attr_accessor :poster, :rating, :plot
 
@@ -12,7 +11,8 @@ module MovieDatabase
 
     def call
       response = @connection.get(title_to_url)
-      JSON.parse(response.body, symbolize_names: true)[:data][:attributes]
+      attributes_hash = JSON.parse(response.body, symbolize_names: true)[:data][:attributes]
+      assign_attributes(attributes_hash)
     end
 
     private
@@ -24,6 +24,13 @@ module MovieDatabase
       else
         words.map(&:capitalize).join('%20')
       end
+    end
+
+    def assign_attributes(hash)
+      @rating = hash[:rating]
+      @plot = hash[:plot]
+      @poster = hash[:poster]
+      instance_values.symbolize_keys.slice(:poster, :rating, :plot)
     end
   end
 end
