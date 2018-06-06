@@ -13,10 +13,6 @@ RSpec.describe MovieDecorator do
   describe 'formatted_released_at' do
      it { expect(movie.decorate.formatted_released_at).to eq('21.03.2018') }
   end
-  
-  describe 'formatted_released_at' do
-     it { expect(movie.decorate.formatted_released_at).to eq('21.03.2018') }
-  end
 
   describe '#rating #plot #poster' do
     before(:each) { allow_any_instance_of(described_class).to receive(:values).and_return(values) }
