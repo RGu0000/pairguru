@@ -1,10 +1,16 @@
 %h1= @movie.title
-%img(src="https://pairguru-api.herokuapp.com/#{@movie.poster}")
-%h3= "Average rating of the movie: #{@movie.rating}"
 .jumbotron
-  = @movie.plot
-- if user_signed_in?
+  %p= @movie.description
 
+.jumbotron
+  - if @movie.movie_found?
+    %p Detailed plot line:
+    %p= @movie.plot
+    %p= "Average rating of the movie: #{@movie.rating}"
+    %img(src="https://pairguru-api.herokuapp.com/#{@movie.poster}")
+  - else
+    %p Sorry, we couldn't find this movie in our database!
+- if user_signed_in?
   %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
 
   - if current_user.present?

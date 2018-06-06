@@ -11,8 +11,11 @@ module MovieDatabase
 
     def call
       response = @connection.get(title_to_url)
-      attributes_hash = JSON.parse(response.body, symbolize_names: true)[:data][:attributes]
-      assign_attributes(attributes_hash)
+      if response.body["Couldn't find Movie"].nil?
+        assign_attributes(JSON.parse(response.body, symbolize_names: true)[:data][:attributes])
+      else
+        assign_attributes({})
+      end
     end
 
     private
