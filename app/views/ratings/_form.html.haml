@@ -1,0 +1,6 @@
+%p Rate this league:
+= link_to "1", rate_movie_path(@movie.id, current_user.id, 1), class: "glyphicon glyphicon-star", method: :post
+= link_to "2", rate_movie_path(@movie.id, current_user.id, 2), class: "glyphicon glyphicon-star", method: :post
+= link_to "3", rate_movie_path(@movie.id, current_user.id, 3), class: "glyphicon glyphicon-star", method: :post
+= link_to "4", rate_movie_path(@movie.id, current_user.id, 4), class: "glyphicon glyphicon-star", method: :post
+= link_to "5", rate_movie_path(@movie.id, current_user.id, 5), class: "glyphicon glyphicon-star", method: :post

@@ -27,4 +27,8 @@ class MovieDecorator < Draper::Decorator
     return @values if @values.present?
     @values = MovieDatabase::PairguruApi.new(object.title).call
   end
+
+  def formatted_released_at
+    released_at.strftime('%d.%m.%Y')
+  end
 end
