@@ -1,4 +1,5 @@
 %h1= @movie.title
+= "Average movie rating: #{ @average_rating }" if @average_rating.present?
 .jumbotron
   %p= @movie.description
 
@@ -12,9 +13,14 @@
     %p Sorry, we couldn't find this movie in our database!
 - if user_signed_in?
   %p= link_to 'Email me details about this movie', send_info_movie_path(@movie), class: 'btn btn-sm btn-default'
+  %p= "This movie has #{ pluralize(@movie.likes.count, 'like') }"
 
   - if current_user.present?
+    = render 'ratings/form'
     = render 'comments/form'
+    = render 'likes/like'
+    = render 'movies/change_form'
+
 - else
   %h3 Login to add comments
   %br

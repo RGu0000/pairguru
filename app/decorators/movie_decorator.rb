@@ -7,6 +7,7 @@ class MovieDecorator < Draper::Decorator
       '?a=' + SecureRandom.uuid
   end
 
+
   def movie_found?
     values.values.exclude? nil
   end
@@ -22,5 +23,9 @@ class MovieDecorator < Draper::Decorator
   def values
     return @values if @values.present?
     @values = MovieDatabase::PairguruApi.new(object.title).call
+
+  def formatted_released_at
+    released_at.strftime('%d.%m.%Y')
+
   end
 end
