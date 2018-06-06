@@ -12,6 +12,9 @@ gem "sass-rails"
 gem "sqlite3"
 gem "uglifier"
 
+# Faraday - HTTP Client lib
+gem 'faraday'
+
 group :development do
   gem "better_errors"
   gem "binding_of_caller"

@@ -6,7 +6,7 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = Movie.find(params[:id])
+    @movie = Movie.find(params[:id]).decorate
     @comments = @movie.comments.includes(:user).order('comments.created_at ASC')
     @comment = Comment.new
     @user_comment = Comment.find_by(movie_id: @movie.id, author_id: current_user.id) if current_user.present?
