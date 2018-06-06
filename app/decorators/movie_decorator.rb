@@ -7,6 +7,10 @@ class MovieDecorator < Draper::Decorator
       '?a=' + SecureRandom.uuid
   end
 
+  def formatted_released_at
+    released_at.strftime('%d.%m.%Y')
+  end
+
   def movie_found?
     values.values.exclude? nil
   end
