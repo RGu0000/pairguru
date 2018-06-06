@@ -22,12 +22,9 @@ class MovieDecorator < Draper::Decorator
   def values
     return @values if @values.present?
     @values = MovieDatabase::PairguruApi.new(object.title).call
-<<<<<<< Updated upstream
-=======
   end
 
   def formatted_released_at
     released_at.strftime('%d.%m.%Y')
->>>>>>> Stashed changes
   end
 end

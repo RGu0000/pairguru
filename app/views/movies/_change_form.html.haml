@@ -1,0 +1,11 @@
+= form_for [@movie] do |f|
+  -
+  .field.form-group
+    Title:
+    = f.text_area :title, class: "form-control"
+    Desciption:
+    = f.text_area :description, class: "form-control"
+    Genre:
+    = f.text_area :genre_id, class: "form-control"
+  .actions
+    = f.submit

@@ -25,4 +25,6 @@ class User < ApplicationRecord
 
   validates :phone_number, format: { with: /\A[+]?\d+(?>[- .]\d+)*\z/, allow_nil: true }
   has_many :comments, foreign_key: 'author_id', dependent: :destroy
+  has_many :likes
+  has_many :movies, through: :likes
 end

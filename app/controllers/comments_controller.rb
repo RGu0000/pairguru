@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @movie.comments.new(comment_params)
-    initialize_comment
+    @comment.author_id = current_user.id
     if @comment.save
       flash[:notice] = "You have commented on #{@movie.title}. Thank you."
     elsif @comment.message.empty?
@@ -36,11 +36,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:message)
-  end
-
-  def initialize_comment
-    @comment.author_id = current_user.id
-    @comment.movie_id = @movie.id
+    params.require(:comment).permit(:message, :movie_id)
   end
 end
